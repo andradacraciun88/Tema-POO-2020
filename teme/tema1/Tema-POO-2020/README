@@ -1,38 +1,69 @@
 Object Oriented Programming Course
 Homework - VideosDB
 
-November 2020
+https://github.com/andradacraciun88/Tema-POO-2020.git
+Craciun Andrada-Sinziana
 
-# Info
-https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/tema
+Tema-1 POO
 
-# About the code
+- in clasa UserInputData am facut o metoda numita addFavoriteMovie caruia i-am dat ca parametru numele filmului
 
-We provide the input tests, the logic that parses them and the checker that runs them.
+- am declarat un HashMap numit ratedMovie de String- uri si o lista double in care am retinut toate filmele carora utilizatorul
+le-a dat rating
 
-* test_db - contains the tests in JSON format
-* src
-   * checker - the checker's sources including the checkstyle necessary files, not to be modified
-   * fileio - classes for parsing the input files, not to be modified
-   * common, utils
-        * contain utility classes with constants and static methods
-        * you can add your own functionality in the existing classes or add new classes as well
-   * actor
-        * contains an enum for the types of awards an actor can have - do not modify it
-        * you can add here your actor related classes
-   * entertainment
-        * contains an enum for the supported video genres - do not modify it
-        * class for representing a Season of a tv show - do not modify it
-        * you can add here your entertainment related classes
+- aceasta metoda verifica daca filmul dat ca parametru a fost vazut de utilizator si daca este deja in lista lui de favorite,
+returnand astfel un mesaj de eroare
 
-We encourage you to organize your implementation in packages based on the functionality their classes offer. Try to keep
-your code modular, readable and documented.
+- in caz contrar se adauga filmul vizualizat in lista de favorite a utilizatorului
 
-# Testing
+- metoda markAsViewed verifica daca filmul a fost vizualizat de utilizator, in acest caz incrementandu-i numarul de vizualizari
+si se afiseaza un mesaj de succes
 
-The Main class runs the checker on your implementation. Add the entry point to your implementation in it.
+- metoda addRatingMovie verifica daca filmul a fost deja vazut si daca i s-a dat deja o recenzie, in acest caz afisand un mesaj de eroare
 
-Run Main to test your implementation from the IDE or from command line.
+- daca nu a i a mai fost dat rating de catre utilizator, filmul este adaugat in HashMap
 
-Run the main method from Test class with the name of the input file from the command line and the result will be written
-to the out.txt file. Thus, you can compare this result with ref.
+- am procedat in aceeasi maniera si pentru seriale
+
+- in clasa MovieInputData am declarat un ArrayList de tipul double numit whatRatingMovie in care am retinut ratingurile
+ pe care diversi utilizatori le au dat filmului
+
+- metoda medieRatingMovie parcurge vectorul whatRatingMovie si face media tuturor ratingurilor date filmului respectiv
+pentru a intoarce media finala pentru film
+
+- am procedat in mod asemanator si pentru seriale, doar ca am facut ratingul pentru fiecare sezon
+
+- in metoda durationSerial am adunat duratele tuturor sezoanelor unui serial pentru a returna durata totala a serialului
+
+- in clasa ActorInputData cu ajutorul metodei actor ActorAwards am iterat prin HashMap-ul awards
+(care retine award urile castigate de un actor) si am retinut in variabila actorAwardsNumber numarul total de award uri castigate de un actor
+
+- in clasele de tipul Sort am facut sortarile dupa criteriile fiecarui tip de cerinta
+
+- in clasa main am cautat in fisierele din input in functie de comanda dorita
+
+- am apelat metodele necesare pentru rezolvarea fiecarei cerinte
+
+- pentru actiunea de tipul command favorite am iterat printre toti utilizatorii pentru a-l gasi pe cel dorit si
+am aplicat metodele necesare fiecarui task de acest tip
+
+- pentru output am luat un obiect de tip JSONObject si am aplelat functia de write data
+
+- pentru actiunea de tipul query am cautat in fiserele de input dupa tipul obiectului si criterii pentru a
+acoperi cazurile necesare
+
+- in cazul actor_average am iterat printre toti actorii cautand in filmografia fiecaruia filmul sau serialul dat ca input urmand ca mai apoi
+sa fac media ratingurilor filmelor si a serialelor in care a jucat actorul
+
+- am creat o lista de timpul ActorInputData numita actors in care am pus toti actorii din input ce au media mai mare decat 0
+
+- am sortat aceasta lista in functie de ratinguri cu ajutorul clasei Sort, pentru a returna primii N actori
+
+- clasa Sort sorteaza obiectele de tipul ActorInputData, primul criteriu fiind media ratingurlor, iar
+al doilea ordinea alfabetica a numelor actorilor
+
+- in mod similar am procedat si pentru celelalte cerinte de la actiunea query, in functie de tipul obiectului si criteria specifica fiecarei cerinte,
+ diferenta fiind la filterele aplicate
+
+- rezultatul acestor actiuni fiind afisat in fisirerele de output
+
