@@ -53,5 +53,21 @@ public final class Season {
                 + duration
                 + '}';
     }
+
+    /**
+     ** @return
+     */
+    public double getRatingOneSeason() {
+        if (ratings.size() == 0) {
+            return 0;
+        }
+        double sum = 0;
+        double med = 0;
+        for (int i = 0; i < ratings.size(); i++) {
+            sum += ratings.get(i);
+        }
+        med = sum / ratings.size();
+        return med;
+    }
 }
 

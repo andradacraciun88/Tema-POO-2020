@@ -23,6 +23,22 @@ public abstract class ShowInput {
     /**
      * Show genres
      */
+    private int numberViews;
+
+    /**
+     * @param numberViews
+     */
+    public void setNumberViews(final int numberViews) {
+        this.numberViews = numberViews;
+    }
+
+    /**
+     * @return
+     */
+    public int getNumberViews() {
+        return numberViews;
+    }
+
     private final ArrayList<String> genres;
 
     public ShowInput(final String title, final int year,

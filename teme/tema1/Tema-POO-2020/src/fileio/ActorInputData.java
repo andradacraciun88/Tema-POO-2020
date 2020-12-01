@@ -15,6 +15,16 @@ public final class ActorInputData {
      * actor name
      */
     private String name;
+
+    /**
+     *
+     * @param med
+     */
+    public void setMed(final double med) {
+        this.med = med;
+    }
+
+    private double med;
     /**
      * description of the actor's career
      */
@@ -22,6 +32,7 @@ public final class ActorInputData {
     /**
      * videos starring actor
      */
+    // lista cu filmele in care a jucat actorul
     private ArrayList<String> filmography;
     /**
      * awards won by the actor
@@ -73,4 +84,23 @@ public final class ActorInputData {
                 + careerDescription + '\''
                 + ", filmography=" + filmography + '}';
     }
+    public double getMed() {
+        return med;
+    }
+
+    public int getActorAwards() {
+        return actorAwards();
+    }
+
+    /**
+     * @return
+     */
+    public int actorAwards() {
+        int actorAwardsNumber = 0;
+        for (Map.Entry<ActorsAwards, Integer> entry : awards.entrySet()) {
+            actorAwardsNumber += entry.getValue();
+        }
+        return actorAwardsNumber;
+    }
+
 }
