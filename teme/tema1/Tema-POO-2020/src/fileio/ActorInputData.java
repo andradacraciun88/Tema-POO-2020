@@ -18,7 +18,7 @@ public final class ActorInputData {
 
     /**
      *
-     * @param med
+     * @param
      */
     public void setMed(final double med) {
         this.med = med;
@@ -28,7 +28,7 @@ public final class ActorInputData {
     /**
      * description of the actor's career
      */
-    private String careerDescription;
+    private final String careerDescription;
     /**
      * videos starring actor
      */
@@ -37,7 +37,7 @@ public final class ActorInputData {
     /**
      * awards won by the actor
      */
-    private Map<ActorsAwards, Integer> awards;
+    private final Map<ActorsAwards, Integer> awards;
 
     public ActorInputData(final String name, final String careerDescription,
                           final ArrayList<String> filmography,
@@ -72,10 +72,6 @@ public final class ActorInputData {
         return careerDescription;
     }
 
-    public void setCareerDescription(final String careerDescription) {
-        this.careerDescription = careerDescription;
-    }
-
     @Override
     public String toString() {
         return "ActorInputData{"
@@ -93,10 +89,11 @@ public final class ActorInputData {
     }
 
     /**
-     * @return
+     * @return number of awards
      */
     public int actorAwards() {
         int actorAwardsNumber = 0;
+        /* iterate in HashMap to find how many awards an actor has */
         for (Map.Entry<ActorsAwards, Integer> entry : awards.entrySet()) {
             actorAwardsNumber += entry.getValue();
         }

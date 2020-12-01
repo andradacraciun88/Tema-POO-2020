@@ -19,7 +19,7 @@ public final class UserInputData {
      */
     private final String subscriptionType;
 
-    //numarul de ratinguri pe care le au dat
+    /* the number of ratings */
     private int numberRatings;
 
     public void setNumberRatings(final int numberRatings) {
@@ -37,12 +37,12 @@ public final class UserInputData {
     /**
      * Movies added to favorites
      */
-    //pentru fiecare utilizator am o lista cu filmele preferate
     private final ArrayList<String> favoriteMovies;
 
-    // voi crea un map pentru a retine toate filmele carora utilizatorul le a dat rating
+    /* a HaspMap that contains the name of the movie and every rate that it has
+     from every user */
     private final HashMap<String, ArrayList<Double>>
-            ratedMovie = new HashMap<String, ArrayList<Double>>();
+            ratedMovie = new HashMap<>();
 
 
     public UserInputData(final String username, final String subscriptionType,
@@ -86,13 +86,13 @@ public final class UserInputData {
      * @return
      */
     public String addFavoriteMovie(final String movie) {
-            // daca gasesc filmul in istoric
+            /* find the movie from history */
             if (history.containsKey(movie)) {
-                //ma uit si in favorite sa vad daca e
+                /* if the movie is already in favorite list */
                 if (favoriteMovies.contains(movie)) {
                         return "error -> " + movie + " is already in favourite list";
                 }
-                //il adaug la favorite
+                /* add to favorite */
                 favoriteMovies.add(movie);
                 return "success -> " + movie + " was added as favourite";
             } else {
@@ -105,38 +105,33 @@ public final class UserInputData {
      * @return
      */
     public String markAsViewed(final String video) {
-        // daca se afla in lista de vizualizate
+        /* see if the movie is already seen and incresase the numbers of views if it is */
         if (history.containsKey(video)) {
             history.put(video, history.get(video) + 1);
         }
-        //daca nu se afla in lista de vizualiazare, o adaug
-        history.put(video, 0);
         return "success -> " + video + " was viewed with total views of 1";
     }
 
     /**
      * @param username
      * @param movie
-     * @param numberSeasons
      * @param rating
      * @param movieObj
      * @return
      */
     public String addRatingMovie(final String username,
-                                 final String movie, final int numberSeasons,
+                                 final String movie,
                                  final double rating, final MovieInputData movieObj) {
-        // daca l a vazut
         if (history.containsKey(movie)) {
-            // daca i a mai dat rating, il caut prin Hashmap
+            /* if the movie was already rated */
             if (ratedMovie.containsKey(movie)) {
                 return "error -> " + movie + " has been already rated";
             }
-            //daca nu i a mai dat rating il adaug in Hashmap
+            /* if the movie wasn't already rated, add it to HashMap */
             ArrayList<Double> ratingList = new ArrayList<>();
             ratingList.add(rating);
             ratedMovie.put(movie, ratingList);
-            //ot obiectul movie ii aplic metoda de bagare in lista de ratinguri
-            //media unui film
+            /* get the rating from the movie */
             movieObj.getWhatRatingMovie().add(rating);
             numberRatings++;
             return "success -> " + movie + " was rated with " + rating + " by " + username;
@@ -156,24 +151,22 @@ public final class UserInputData {
     public String addRatingSerial(final String username,
                                   final String movie, final int numberSeasons,
                                   final double rating, final SerialInputData serialObj) {
-        // daca l a vazut
         if (history.containsKey(movie)) {
-            // daca i a mai dat rating, il caut prin Hashmap
+            /* if the show was already rated */
             if (ratedMovie.containsKey(movie)) {
                 if (ratedMovie.get(movie).contains((numberSeasons))) {
                     return "error -> " + movie + " has been already rated";
                 }
-                // nu a dat rating inca
+                /* if the show wasn't already rated, add it to HashMap */
                 ratedMovie.get(movie).add(rating);
                 serialObj.getSeasons().get(numberSeasons - 1).getRatings().add(rating);
                 numberRatings++;
                 return "success -> " + movie + " was rated with " + rating + " by " + username;
             }
-            //nu cont cheia
             ArrayList<Double> ratingList = new ArrayList<>();
             ratingList.add(rating);
             ratedMovie.put(movie, ratingList);
-            // am ratingul pt fiecare sezon
+            /* get the rating from every season from the show */
             serialObj.getSeasons().get(numberSeasons - 1).getRatings().add(rating);
             numberRatings++;
             return "success -> " + movie + " was rated with " + rating + " by " + username;

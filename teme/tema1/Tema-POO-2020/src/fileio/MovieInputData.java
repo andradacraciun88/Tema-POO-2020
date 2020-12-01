@@ -66,9 +66,8 @@ public final class MovieInputData extends ShowInput {
     public ArrayList<Double> getWhatRatingMovie() {
         return whatRatingMovie;
     }
-    private double ratingMovie;
 
-    private ArrayList<Double> whatRatingMovie = new ArrayList<>();
+    private final ArrayList<Double> whatRatingMovie = new ArrayList<>();
 
     public double getRatingMovie() {
         return medieRatingMovie();
@@ -76,7 +75,7 @@ public final class MovieInputData extends ShowInput {
 
     /**
      *
-     * @return
+     * @return med of a movie
      */
     public double medieRatingMovie() {
         double sumaMovie = 0;
@@ -84,13 +83,12 @@ public final class MovieInputData extends ShowInput {
         if (whatRatingMovie.size() == 0) {
             return 0;
         }
-        for (int i = 0; i < whatRatingMovie.size(); i++) {
-            sumaMovie += whatRatingMovie.get(i);
+        for (Double aDouble : whatRatingMovie) {
+            /* store in sumaMovie the sum of every rating given to the movie */
+            sumaMovie += aDouble;
         }
+        /* store in medieMovie the final rating of a movie */
         medieMovie = sumaMovie / whatRatingMovie.size();
-        this.ratingMovie = medieMovie;
         return medieMovie;
     }
-    //caut filmul meu in listele de favorite alea utilizatorilor
-
 }

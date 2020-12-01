@@ -2,7 +2,7 @@ package fileio;
 
 import java.util.Comparator;
 
-final public class SortMoviesMostViewed implements Comparator<MovieInputData> {
+public final class SortMoviesMostViewed implements Comparator<MovieInputData> {
     @Override
 
     public int compare(final MovieInputData o1, final MovieInputData o2) {

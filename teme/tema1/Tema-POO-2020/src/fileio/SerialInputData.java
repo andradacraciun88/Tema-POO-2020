@@ -76,7 +76,7 @@ public final class SerialInputData extends ShowInput {
         return whatRatingSerial;
     }
 
-    private ArrayList<Double> whatRatingSerial = new ArrayList<>();
+    private final ArrayList<Double> whatRatingSerial = new ArrayList<>();
 
     public double getRatingSerial() {
         return medieRatingSerial();
@@ -90,13 +90,10 @@ public final class SerialInputData extends ShowInput {
             return 0;
         }
         double sum = 0;
-        double med = 0;
-        // ratingurile de la un singur sezon
-        for (int j = 0; j < seasons.size(); j++) {
-            // sezonul curent din for
-             Season s = seasons.get(j);
-             // iau media ratingrilor dintr un sezon
-             sum += s.getRatingOneSeason();
+        double med;
+        for (Season s : seasons) {
+            /* add to sum the med from every season */
+            sum += s.getRatingOneSeason();
         }
         med = sum / seasons.size();
         return med;
@@ -113,5 +110,4 @@ public final class SerialInputData extends ShowInput {
         }
         return sumDurationSerial;
     }
-
 }

@@ -2,7 +2,7 @@ package fileio;
 
 import java.util.Comparator;
 
-final public class SortMoviesDuration implements Comparator<MovieInputData> {
+public final class SortMoviesDuration implements Comparator<MovieInputData> {
     @Override
     public int compare(final MovieInputData o1, final MovieInputData o2) {
         if (o1.getDuration() > o2.getDuration()) {

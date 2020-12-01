@@ -2,7 +2,7 @@ package fileio;
 
 import java.util.Comparator;
 
-final public class SortSeriesDuration implements Comparator<SerialInputData> {
+public final class SortSeriesDuration implements Comparator<SerialInputData> {
 
     @Override
     public int compare(final SerialInputData o1, final SerialInputData o2) {
